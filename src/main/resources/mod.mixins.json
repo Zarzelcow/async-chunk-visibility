@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.zarzelcow.async_chunk_visibility.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "MixinWorldRenderer"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

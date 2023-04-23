@@ -1,0 +1,80 @@
+plugins {
+	id 'fabric-loom' version "1.1-SNAPSHOT"
+	id 'legacy-looming' version "1.1-SNAPSHOT" // Version must be the same as fabric-loom's
+}
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = project.archives_base_name
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+	maven { url 'https://jitpack.io' }
+}
+
+loom {
+	setIntermediaryUrl('https://repo.legacyfabric.net/repository/legacyfabric/net/legacyfabric/intermediary/%1$s/intermediary-%1$s-v2.jar');
+	accessWidenerPath = file("src/main/resources/mod.accesswidener")
+}
+
+import org.gradle.internal.os.OperatingSystem
+
+project.ext.lwjglVersion = "3.3.1"
+
+switch (OperatingSystem.current()) {
+	case OperatingSystem.LINUX:
+		project.ext.lwjglNatives = "natives-linux"
+		break
+	case OperatingSystem.WINDOWS:
+		project.ext.lwjglNatives = "natives-windows"
+		break
+}
+
+dependencies {
+	minecraft "com.mojang:minecraft:${project.minecraft_version}"
+	mappings "net.legacyfabric:yarn:${project.yarn_mappings}:v2"
+	modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+	implementation "org.apache.logging.log4j:log4j-core:2.20.0"
+	implementation "it.unimi.dsi:fastutil:8.5.12"
+
+	modImplementation "com.github.Zarzelcow:CompactSineLUT:de1881993f"
+	modImplementation "com.github.Zarzelcow:legacy-lwjgl3:78643b2a96"
+	implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
+
+	runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-assimp::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
+	runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
+}
+
+configurations.all {
+	// Removes LWJGL2 dependencies
+	exclude group: "org.lwjgl.lwjgl"
+}
+
+processResources {
+	inputs.property "version", project.version
+
+	filesMatching("fabric.mod.json") {
+		expand "version": project.version
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = "UTF-8"
+	if (JavaVersion.current().isJava9Compatible()) it.options.release = 8
+}
+
+java {
+	withSourcesJar()
+}
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}" }
+	}
+}

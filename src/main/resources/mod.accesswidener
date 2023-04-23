@@ -1,0 +1,18 @@
+accessWidener	v1	named
+
+accessible class net/minecraft/client/render/WorldRenderer$ChunkInfo
+accessible method net/minecraft/client/render/WorldRenderer$ChunkInfo <init> (Lnet/minecraft/client/render/WorldRenderer;Lnet/minecraft/client/world/BuiltChunk;Lnet/minecraft/util/math/Direction;I)V
+accessible field net/minecraft/client/render/WorldRenderer$ChunkInfo chunk Lnet/minecraft/client/world/BuiltChunk;
+accessible field net/minecraft/client/render/WorldRenderer$ChunkInfo direction Lnet/minecraft/util/math/Direction;
+accessible field net/minecraft/client/render/WorldRenderer$ChunkInfo facingSet Ljava/util/Set;
+accessible field net/minecraft/client/render/WorldRenderer$ChunkInfo propagationLevel I
+
+accessible method net/minecraft/client/render/BuiltChunkStorage getRenderedChunk (Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/client/world/BuiltChunk;
+accessible field net/minecraft/client/render/BuiltChunkStorage sizeY I
+accessible field net/minecraft/client/render/BuiltChunkStorage sizeX I
+accessible field net/minecraft/client/render/BuiltChunkStorage sizeZ I
+
+accessible field net/minecraft/client/render/CullingCameraView clipper Lnet/minecraft/client/render/BaseFrustum;
+accessible field net/minecraft/client/render/CullingCameraView x D
+accessible field net/minecraft/client/render/CullingCameraView y D
+accessible field net/minecraft/client/render/CullingCameraView z D

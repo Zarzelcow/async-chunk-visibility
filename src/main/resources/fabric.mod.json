@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "async_chunk_visibility",
+  "version": "${version}",
+  "name": "Async Chunk Visibility",
+  "description": "Replaces the chunk visibility algorithm with an asynchronous version to increase performance",
+  "authors": [
+    "Zarzelcow"
+  ],
+  "license": "GPL-3.0-or-later",
+  "icon": "assets/async_chunk_visibility/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+    ]
+  },
+  "mixins": [
+    "mod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.12.0",
+    "minecraft": "1.8.9"
+  }
+}
