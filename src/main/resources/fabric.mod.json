@@ -9,11 +9,8 @@
   ],
   "license": "GPL-3.0-or-later",
   "icon": "assets/async_chunk_visibility/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-    ]
-  },
+  "environment": "client",
+  "accessWidener": "mod.accesswidener",
   "mixins": [
     "mod.mixins.json"
   ],
